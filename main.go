@@ -13,7 +13,7 @@ func main() {
 func Message(who ...string) string {
 	switch len(who) {
 	case 0:
-		return fmt.Sprint("Hello there!")
+		return "Hello there!"
 	case 1:
 		return fmt.Sprintf("Hello %s", who[0])
 	default:

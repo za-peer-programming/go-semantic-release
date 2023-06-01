@@ -30,6 +30,13 @@ func Test_message(t *testing.T) {
 			},
 			want: "Hello 1, 2",
 		},
+		{
+			name: "Basic 3 Args",
+			args: args{
+				who: []string{"1", "2", "No"},
+			},
+			want: "Hello 1, 2, No",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
