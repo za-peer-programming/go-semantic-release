@@ -1,6 +1,10 @@
 name: Test Code
 
-on: [push]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main", "dev-*" ]
 
 
 # This allows a subsequently queued workflow run to interrupt previous runs
