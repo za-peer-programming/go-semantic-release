@@ -3,10 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 	"strings"
 )
 
 func main() {
+	if len(flag.Args()) > 4 {
+		fmt.Println("You are not allowed to say hello to more than 4 people")
+		os.Exit(1)
+	}
 	fmt.Println(Message(flag.Args()...))
 }
 
