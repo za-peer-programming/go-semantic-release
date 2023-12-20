@@ -99,20 +99,21 @@ verifyConditions:
 #version: 2.0.0
 branches:
   - name: main
-  - name: /^stage.*$/
+  - name: "^stage.*$"
     prerelease: rc
-    range: vN.N.N-rc.N
-  - name: /^dev.*$/
+#    range: vx.x.x-rc.N
+  - name: "^dev.*$"
     prerelease: dev
-  - name: /^feature.*$/
+  - name: "^feature.*$"
     prerelease: feat
-  - name: /^bug.*$/
+  - name: "bug.*"
     prerelease: bug
-  - name: /^hotfix.*$/
+  - name: "hotfix.*"
     prerelease: rc
-  - name: /^refactor.*$/
+  - name: "^refactor.*$"
     prerelease: ref
     range: vx.x.x-refactor.N
+#    channel: vx.x.x-refactor.N
 
 # Specify valid version numbers including pre-releases
 # branches:
