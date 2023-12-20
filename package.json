@@ -1,0 +1,20 @@
+{
+  "name": "go-semantic-release",
+  "version": "1.0.0",
+  "description": "This project is a template golang repo for semantic release",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/za-peer-programming/go-semantic-release.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/za-peer-programming/go-semantic-release/issues"
+  },
+  "homepage": "https://github.com/za-peer-programming/go-semantic-release#readme",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.2.5",
+    "semantic-release": "^22.0.12"
+  }
+}

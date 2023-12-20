@@ -1,0 +1,131 @@
+#branches:
+#  - main
+#  - /^stage.*$/
+#  - /^dev.*$/
+#  - /^feature.*$/
+#  - /^bug.*$/
+#  - /^hotfix.*$/
+
+#branch:
+#  - main
+
+plugins:
+  - - "@semantic-release/commit-analyzer"
+#    - analyzeCommits:
+    - path: '@semantic-release/commit-analyzer'
+      preset: angular
+      releaseRules:
+        - type: docs
+          release: false
+        - type: fix
+          scope: fix-*
+          release: patch
+        - type: bug
+          scope: bug-*
+          release: patch
+        - type: ci
+          release: false
+        - type: feature
+          release: minor
+        - type: refactor
+          release: patch
+        - type: feat
+          release: minor
+        - type: wip
+          release: false
+        - type: chore
+          release: false
+        - scope: no-release
+          release: false
+      parserOpts:
+        noteKeywords:
+          - BREAKING CHANGE
+          - BREAKING CHANGES
+  - - "@semantic-release/release-notes-generator"
+    - types:
+        - type: docs
+          release: false
+          section: Docs
+          hidden: false
+        - type: fix
+          scope: fix-*
+          release: patch
+          section: Patch
+          hidden: false
+        - type: bug
+          scope: bug-*
+          release: patch
+          section: Patch
+          hidden: false
+        - type: ci
+          release: false
+          section: CI/CD
+          hidden: false
+        - type: feature
+          release: minor
+          section: Feature
+          hidden: false
+        - type: feat
+          release: minor
+          section: Feature
+          hidden: false
+        - type: wip
+          release: false
+          section: WIP
+          hidden: false
+        - type: chore
+          release: false
+          section: Chore
+          hidden: false
+        - scope: no-release
+          release: false
+        - scope: Refactor
+          release: false
+          section: Refactoring
+          hidden: false
+  - "@semantic-release/changelog"
+  - "@semantic-release/npm"
+  - "@semantic-release/github"
+
+verifyConditions:
+  - '@semantic-release/changelog'
+  - '@semantic-release/git'
+  - '@semantic-release/github'
+
+# Custom release tags mapping
+#tagFormat: "${version}"
+
+# Define your versioning rules
+#version: 2.0.0
+branches:
+  - name: main
+  - name: /^stage.*$/
+    prerelease: rc
+    range: vN.N.N-rc.N
+  - name: /^dev.*$/
+    prerelease: dev
+  - name: /^feature.*$/
+    prerelease: feat
+  - name: /^bug.*$/
+    prerelease: bug
+  - name: /^hotfix.*$/
+    prerelease: rc
+  - name: /^refactor.*$/
+    prerelease: ref
+    range: vx.x.x-refactor.N
+
+# Specify valid version numbers including pre-releases
+# branches:
+#  - "2.x.x"
+#  - "2.x.x-*"
+
+defaultBranch: main
+#tagFormat: "${version}-${branch}"
+
+publish: ['@semantic-release/github']
+success: ['@semantic-release/github']
+fail: []
+
+#repositoryUrl: git@github.com:za-peer-programming/go-semantic-release.git
+
+debug: true
