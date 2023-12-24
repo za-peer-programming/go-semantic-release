@@ -11,26 +11,30 @@
 
 plugins:
   - - "@semantic-release/commit-analyzer"
-#    - analyzeCommits:
     - path: '@semantic-release/commit-analyzer'
       preset: angular
       releaseRules:
-        - type: docs
-          release: false
+        - type: break
+          release: major
+
+        - type: feature
+          release: minor
+        - type: feat
+          release: minor
+
         - type: fix
           scope: fix-*
           release: patch
         - type: bug
           scope: bug-*
           release: patch
-        - type: ci
-          release: false
-        - type: feature
-          release: minor
         - type: refactor
           release: patch
-        - type: feat
-          release: minor
+        - type: docs
+          release: patch
+
+        - type: ci
+          release: patch
         - type: wip
           release: false
         - type: chore
@@ -83,8 +87,14 @@ plugins:
           release: false
           section: Refactoring
           hidden: false
+      writerOpts:
+        - commitGroupsSort:
+            Feature
+        - commitsSort:
+            scope
+            subject
   - "@semantic-release/changelog"
-  - "@semantic-release/npm"
+  - "@semantic-release/git"
   - "@semantic-release/github"
 
 verifyConditions:
@@ -92,36 +102,25 @@ verifyConditions:
   - '@semantic-release/git'
   - '@semantic-release/github'
 
-# Custom release tags mapping
-#tagFormat: "${version}"
-
 # Define your versioning rules
-#version: 2.0.0
 branches:
   - name: main
-  - name: "^stage.*$"
-    prerelease: rc
-#    range: vx.x.x-rc.N
-  - name: "^dev.*$"
-    prerelease: dev
-  - name: "^feature.*$"
-    prerelease: feat
-  - name: "bug.*"
-    prerelease: bug
-  - name: "hotfix.*"
-    prerelease: rc
-  - name: "^refactor.*$"
-    prerelease: ref
-    range: vx.x.x-refactor.N
-#    channel: vx.x.x-refactor.N
+  - name: "stage/*"
+    prerelease: true
+    channel: beta
+  - name: "dev/*"
+    prerelease: alpha
+  - name: "feature/*"
+    prerelease: "new-${name.replace(/feature\\//g, 'feat-').replace(/_/g, '-')}"
+  - name: "bug/*"
+    prerelease: "${name.replace(/bug\\//g, 'bug-fix-').replace(/_/g, '-')}"
+  - name: "hotfix/*"
+    prerelease: "${name.replace(/hotfix\\//g, 'hf-').replace(/_/g, '-')}"
+  - name: "refactor/*"
+    prerelease: "${name.replace(/refactor\\//g, 'rf-').replace(/_/g, '-')}"
 
-# Specify valid version numbers including pre-releases
-# branches:
-#  - "2.x.x"
-#  - "2.x.x-*"
 
 defaultBranch: main
-#tagFormat: "${version}-${branch}"
 
 publish: ['@semantic-release/github']
 success: ['@semantic-release/github']
