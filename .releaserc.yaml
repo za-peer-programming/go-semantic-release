@@ -1,14 +1,3 @@
-#branches:
-#  - main
-#  - /^stage.*$/
-#  - /^dev.*$/
-#  - /^feature.*$/
-#  - /^bug.*$/
-#  - /^hotfix.*$/
-
-#branch:
-#  - main
-
 plugins:
   - - "@semantic-release/commit-analyzer"
     - path: '@semantic-release/commit-analyzer'
@@ -126,6 +115,6 @@ publish: ['@semantic-release/github']
 success: ['@semantic-release/github']
 fail: []
 
-#repositoryUrl: git@github.com:za-peer-programming/go-semantic-release.git
+repositoryUrl: git@github.com:za-peer-programming/go-semantic-release.git
 
 debug: true
