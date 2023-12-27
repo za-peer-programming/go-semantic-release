@@ -6,6 +6,7 @@ before:
 builds:
   - env:
       - CGO_ENABLED=0
+    id: "hello-world"
     goamd64:
       - v2
       - v3
