@@ -1,12 +1,20 @@
+# Docs
+# https://goreleaser.com/customization/builds/
+before:
+  hooks:
+    - go mod tidy
 builds:
   - env:
       - CGO_ENABLED=0
+    goamd64:
+      - v2
+      - v3
     targets:
       - linux_amd64
-      - linux_arm64
-      - darwin_amd64
-      - darwin_arm64
-      - linux_arm
+#      - linux_arm64
+#      - darwin_amd64
+#      - darwin_arm64
+#      - linux_arm
       - windows_amd64
     main: ./
     flags:
